@@ -38,7 +38,7 @@ public class Movement : MonoBehaviour
     {
         if (nextDirection != Vector2.zero)
         {
-            SetDirection(direction);
+            SetDirection(nextDirection);
         }
     }
 
@@ -55,14 +55,35 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 position = rb.position;
-        Vector2 translation = direction * speed * speedMultiplier * Time.fixedDeltaTime;
+        Vector2 translation = speed * speedMultiplier * Time.fixedDeltaTime * direction;
 
         rb.MovePosition(position + translation);
     }
 
     private void HandleMovement(Vector2 direction)
     {
+        if (direction == Vector2.zero) return;
 
+        Vector2 dir = Vector2.zero;
+
+        if (direction.y > 0f)
+        {
+            dir = Vector2.up;
+        }
+        else if (direction.y < 0f)
+        {
+            dir = Vector2.down;
+        }
+        else if (direction.x < 0f)
+        {
+            dir = Vector2.left;
+        }
+        else if (direction.x > 0f)
+        {
+            dir = Vector2.right;
+        }
+
+        SetDirection(dir);
     }
 
     public void SetDirection(Vector2 dir, bool forced = false)
@@ -80,7 +101,7 @@ public class Movement : MonoBehaviour
 
     public bool IsTileValid(Vector2 dir)
     {
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, dir, 1.5f, wallLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0f, dir, 1.5f, wallLayer);
         return hit.collider == null;
     }
 }

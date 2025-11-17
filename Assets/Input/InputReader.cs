@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[CreateAssetMenu(menuName = "InputReader")]
 public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInput.IUIActions
 {
     private GameInput gameInput;
@@ -25,6 +26,12 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
 
             SetGameplay();
         }
+    }
+
+    private void OnDisable()
+    {
+        gameInput.Gameplay.Disable();
+        gameInput.UI.Disable();
     }
 
     public void SetGameplay()
