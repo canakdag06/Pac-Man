@@ -15,7 +15,7 @@ TagManager:
   - Pellet
   - Node
   - Pacman
-  - 
+  - Ghost
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Node
     uniqueID: 2337321211
+    locked: 0
+  - name: Ghost
+    uniqueID: 1073417523
     locked: 0
   - name: Pacman
     uniqueID: 855324997
