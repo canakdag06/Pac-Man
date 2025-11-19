@@ -1,5 +1,5 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
     public Ghost[] ghosts;
     public Transform pellets;
     private int pelletCount;
+
+    private Coroutine powerupCoroutine;
+    private int ghostScoreMultiplier = 1;
+
 
     public int Lives { get; private set; }
     public int Score { get; private set; }
@@ -77,7 +81,8 @@ public class GameManager : MonoBehaviour
 
     public void GhostEaten(Ghost ghost)
     {
-        SetScore(Score + ghost.points);
+        ghostScoreMultiplier++;
+        SetScore(Score + ghost.points * ghostScoreMultiplier);
     }
 
     public void PacmanEaten()
@@ -110,8 +115,27 @@ public class GameManager : MonoBehaviour
         // if the pellet is a PowerPellet
         if (pellet is PowerPellet powerPellet)
         {
-            // todo
+            if(powerupCoroutine != null)
+            {
+                StopCoroutine(powerupCoroutine);
+            }
+            powerupCoroutine = StartCoroutine(PowerupTimer(((PowerPellet)pellet).PowerupDuration));
         }
+    }
+
+    private IEnumerator PowerupTimer(float duration)
+    {
+        //TODO Enable Frightened Ghosts
+        yield return new WaitForSeconds(duration);
+        //TODO Disable Frightened Ghosts
+        ResetMultiplier();
+        Debug.Log("CoRoutine finished");
+        powerupCoroutine = null;
+    }
+
+    private void ResetMultiplier()
+    {
+        ghostScoreMultiplier = 1;
     }
 
 }
