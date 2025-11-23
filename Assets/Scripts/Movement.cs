@@ -21,12 +21,18 @@ public class Movement : MonoBehaviour
 
     private void OnEnable()
     {
-        inputReader.MoveEvent += HandleMovement;
+        if (inputReader != null)
+        {
+            inputReader.MoveEvent += HandleMovement;
+        }
     }
 
     private void OnDisable()
     {
-        inputReader.MoveEvent -= HandleMovement;
+        if (inputReader != null)
+        {
+            inputReader.MoveEvent -= HandleMovement;
+        }
     }
 
     void Start()
