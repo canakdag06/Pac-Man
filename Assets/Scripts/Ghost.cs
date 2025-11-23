@@ -12,7 +12,7 @@ public class Ghost : MonoBehaviour
     public Transform target;
     public int points = 200;
 
-    private LayerMask pacmanLayer = LayerMask.NameToLayer("Pacman");
+    private LayerMask pacmanLayer;
 
     private void Awake()
     {
@@ -26,6 +26,7 @@ public class Ghost : MonoBehaviour
 
     void Start()
     {
+        pacmanLayer = LayerMask.NameToLayer("Pacman");
         ResetState();
     }
 
@@ -58,9 +59,9 @@ public class Ghost : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == pacmanLayer)
+        if (collision.gameObject.layer == pacmanLayer)
         {
-            if(FrightenedState.enabled)
+            if (FrightenedState.enabled)
             {
                 GameEvents.GhostEaten(this);
             }
