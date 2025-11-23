@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class GhostBaseState : MonoBehaviour
+public abstract class GhostBaseState : MonoBehaviour
 {
     public Ghost Ghost { get; private set; }
 
