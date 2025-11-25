@@ -13,7 +13,7 @@ public class Pellet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman"))
+        if (collision.gameObject.layer == LayerMask.GetMask("Pacman"))
         {
             GetEaten();
         }
