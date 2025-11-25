@@ -26,14 +26,8 @@ public class Ghost : MonoBehaviour
 
     void Start()
     {
-        pacmanLayer = LayerMask.NameToLayer("Pacman");
+        pacmanLayer = LayerMask.GetMask("Pacman");
         ResetState();
-    }
-
-
-    void Update()
-    {
-
     }
 
     public void ResetState()
