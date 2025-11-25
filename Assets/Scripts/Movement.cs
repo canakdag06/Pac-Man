@@ -98,12 +98,11 @@ public class Movement : MonoBehaviour
     {
         if (IsTileValid(dir) || forced)
         {
-            Debug.Log("VALID");
             Direction = dir;
             nextDirection = Vector2.zero;
 
-            //float angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
-            //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            float angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
         else
         {
