@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    public Vector2 Direction { get; private set; }
+
     private Rigidbody2D rb;
     [SerializeField] private InputReader inputReader;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Vector2 initialDirection;
     private Vector2 nextDirection;
-    private Vector2 direction;
     private Vector3 startingPos;
 
     [SerializeField] private float speed;
@@ -37,6 +38,7 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+        wallLayer = LayerMask.GetMask("Wall");
         ResetState();
     }
 
@@ -51,7 +53,7 @@ public class Movement : MonoBehaviour
     public void ResetState()
     {
         speedMultiplier = 1.0f;
-        direction = initialDirection;
+        Direction = initialDirection;
         nextDirection = Vector2.zero;
         transform.position = startingPos;
         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -61,7 +63,7 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 position = rb.position;
-        Vector2 translation = speed * speedMultiplier * Time.fixedDeltaTime * direction;
+        Vector2 translation = speed * speedMultiplier * Time.fixedDeltaTime * Direction;
 
         rb.MovePosition(position + translation);
     }
@@ -96,11 +98,12 @@ public class Movement : MonoBehaviour
     {
         if (IsTileValid(dir) || forced)
         {
-            direction = dir;
+            Debug.Log("VALID");
+            Direction = dir;
             nextDirection = Vector2.zero;
 
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            //float angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
+            //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
         else
         {
