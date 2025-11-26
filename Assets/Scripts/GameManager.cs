@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
 
         SetLives(Lives - 1);
 
-        if(Lives > 0)
+        if (Lives > 0)
         {
             Invoke(nameof(ResetState), 3f);
         }
@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
     {
         pelletCount--;
         SetScore(Score + pellet.Points);
-        if(pelletCount == 0)
+        if (pelletCount == 0)
         {
             pacman.gameObject.SetActive(false);
             Invoke(nameof(NewRound), 3f);
@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
         // if the pellet is a PowerPellet
         if (pellet is PowerPellet powerPellet)
         {
-            if(powerupCoroutine != null)
+            if (powerupCoroutine != null)
             {
                 StopCoroutine(powerupCoroutine);
             }
@@ -133,7 +133,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(duration);
         //TODO Disable Frightened Ghosts
         ResetMultiplier();
-        Debug.Log("CoRoutine finished");
         powerupCoroutine = null;
     }
 
