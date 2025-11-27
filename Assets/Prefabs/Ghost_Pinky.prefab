@@ -12,6 +12,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost_Pinky
       objectReference: {fileID: 0}
+    - target: {fileID: 1814325715008462528, guid: edf084733a38fe249a5a442294b2bdd0, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814325715008462528, guid: edf084733a38fe249a5a442294b2bdd0, type: 3}
+      propertyPath: m_Color.g
+      value: 0.70980394
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814325715008462528, guid: edf084733a38fe249a5a442294b2bdd0, type: 3}
+      propertyPath: m_Color.r
+      value: 0.98823535
+      objectReference: {fileID: 0}
     - target: {fileID: 3490700269130270716, guid: edf084733a38fe249a5a442294b2bdd0, type: 3}
       propertyPath: baseState
       value: 
@@ -76,17 +88,40 @@ PrefabInstance:
       propertyPath: initialDirection.y
       value: -1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2707008132103757603, guid: edf084733a38fe249a5a442294b2bdd0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1184051874976709236, guid: edf084733a38fe249a5a442294b2bdd0, type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 3130840507335234048}
   m_SourcePrefab: {fileID: 100100000, guid: edf084733a38fe249a5a442294b2bdd0, type: 3}
+--- !u!1 &3927259429381311628 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1184051874976709236, guid: edf084733a38fe249a5a442294b2bdd0, type: 3}
+  m_PrefabInstance: {fileID: 2805449327190521592}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3130840507335234048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3927259429381311628}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4accc10168b1e94ab90cd220dbcf444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 20
+  targetPos: {fileID: 0}
 --- !u!114 &9212963957261422516 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6428308633385695564, guid: edf084733a38fe249a5a442294b2bdd0, type: 3}
   m_PrefabInstance: {fileID: 2805449327190521592}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3927259429381311628}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec004089e8151864484e9f45722d28f3, type: 3}
