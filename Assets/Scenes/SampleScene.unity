@@ -9305,6 +9305,10 @@ PrefabInstance:
       value: Ghost_Inky
       objectReference: {fileID: 0}
     - target: {fileID: 7657797774092764113, guid: a4a2a87e0bbee7f4685a056bb443ddcd, type: 3}
+      propertyPath: Blinky
+      value: 
+      objectReference: {fileID: 953089471}
+    - target: {fileID: 7657797774092764113, guid: a4a2a87e0bbee7f4685a056bb443ddcd, type: 3}
       propertyPath: targetPos
       value: 
       objectReference: {fileID: 751480364}
