@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     public Pacman pacman;
     public Ghost[] ghosts;
     public Transform pellets;
@@ -14,6 +16,17 @@ public class GameManager : MonoBehaviour
 
     public int Lives { get; private set; }
     public int Score { get; private set; }
+
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     void Start()
     {
