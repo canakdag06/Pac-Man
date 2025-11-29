@@ -4,7 +4,7 @@ public class GhostChaseStatePinky : GhostChaseState
 {
     protected override Vector3 GetTargetPosition()
     {
-        Pacman pacman = Ghost.target.gameObject.GetComponent<Pacman>();
+        Pacman pacman = GameManager.Instance.pacman;
 
         Vector3 targetPos = Ghost.target.transform.position;
         Vector2 forwardDirection = pacman.Movement.Direction;
