@@ -2,29 +2,34 @@ using UnityEngine;
 
 public class GhostScatterState : GhostBaseState
 {
-    //private void OnDisable()
-    //{
-    //    Ghost.ChaseState?.Enable();
-    //}
+    [SerializeField] private Transform corner;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Node node = collision.GetComponent<Node>();
+
         if (enabled && node != null)
         {
-            int index = Random.Range(0, node.AvailableDirections.Count);
+            Vector2 direction = Vector2.zero;
+            float minDistance = float.MaxValue;
 
-            if (node.AvailableDirections.Count > 1 && node.AvailableDirections[index] == -Ghost.Movement.Direction)
+            foreach (Vector2 dir in node.AvailableDirections)
             {
-                index++;
-
-                if (index >= node.AvailableDirections.Count)
+                if (dir == -Ghost.Movement.Direction)
                 {
-                    index = 0;
+                    continue;
+                }
+
+                Vector3 newPosition = transform.position + new Vector3(dir.x, dir.y, 0.0f);
+                float distance = (corner.position - newPosition).sqrMagnitude;
+
+                if (distance < minDistance)
+                {
+                    direction = dir;
+                    minDistance = distance;
                 }
             }
-
-            Ghost.Movement.SetDirection(node.AvailableDirections[index]);
+            Ghost.Movement.SetDirection(direction);
         }
     }
 
@@ -32,7 +37,7 @@ public class GhostScatterState : GhostBaseState
     {
         base.Disable();
 
-        if(Ghost.FrightenedState.enabled)
+        if (Ghost.FrightenedState.enabled)
         {
             return;
         }
