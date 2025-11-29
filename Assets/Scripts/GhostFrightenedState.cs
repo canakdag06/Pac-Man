@@ -18,6 +18,9 @@ public class GhostFrightenedState : GhostBaseState
         frightened.enabled = true;
         frightenedExpiring.enabled = false;
 
+        Ghost.ScatterState.Disable();
+        Ghost.ChaseState.Disable();
+
         Invoke(nameof(Flash), duration / 2.0f);
     }
 
@@ -29,6 +32,8 @@ public class GhostFrightenedState : GhostBaseState
         eyes.enabled = true;
         frightened.enabled = false;
         frightenedExpiring.enabled = false;
+
+        Ghost.ScatterState.Enable();
     }
 
     private void Flash()
@@ -54,6 +59,7 @@ public class GhostFrightenedState : GhostBaseState
         eyes.enabled = true;
         frightened.enabled = false;
         frightenedExpiring.enabled = false;
+
     }
 
     private void OnEnable()
