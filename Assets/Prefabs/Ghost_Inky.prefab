@@ -121,5 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0369655b7cd048a2aa75d2582a998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 1
+  duration: 20
   targetPos: {fileID: 0}
+  targetRenderer: {fileID: 0}
+  Blinky: {fileID: 0}
