@@ -7,6 +7,7 @@ public static class GameEvents
     public static event Action<Ghost> OnGhostEaten;
     public static event Action OnPacmanEaten;
     public static event Action<int> OnScoreChanged;
+    public static event Action<int> OnLivesChanged;
 
     // Invoke Functions (not necessary but looks good)
     public static void PelletEaten(Pellet pellet)
@@ -27,5 +28,10 @@ public static class GameEvents
     public static void ScoreChanged(int newScore)
     {
         OnScoreChanged?.Invoke(newScore);
+    }
+
+    public static void LivesChanged(int newLives)
+    {
+        OnLivesChanged?.Invoke(newLives);
     }
 }
