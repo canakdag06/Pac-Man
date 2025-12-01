@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviour
 
     private Coroutine powerupCoroutine;
     private int ghostScoreMultiplier = 1;
-
+    private const int extraLifeScore = 10000;
+    private const int initialLives = 4;
+    private bool isExtraLifeGiven = false;
 
     public int Lives { get; private set; }
     public int Score { get; private set; }
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     private void NewGame()
     {
-        SetLives(3);
+        SetLives(initialLives);
         SetScore(0);
         NewRound();
     }
@@ -57,12 +59,22 @@ public class GameManager : MonoBehaviour
     private void SetLives(int lives)
     {
         Lives = lives;
+        GameEvents.LivesChanged(lives);
     }
 
     private void SetScore(int score)
     {
         Score = score;
         GameEvents.ScoreChanged(score);
+
+        if (!isExtraLifeGiven)
+        {
+            if (score >= extraLifeScore)
+            {
+                SetLives(Lives + 1);
+                isExtraLifeGiven = true;
+            }
+        }
     }
 
     private void NewRound()
