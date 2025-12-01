@@ -3,6 +3,7 @@ using UnityEngine;
 public class GhostScatterState : GhostBaseState
 {
     [SerializeField] private Transform corner;
+    public Transform Corner => corner;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
