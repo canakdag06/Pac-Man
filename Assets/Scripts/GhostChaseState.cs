@@ -8,7 +8,10 @@ public abstract class GhostChaseState : GhostBaseState
     public override void Enable(float duration)
     {
         base.Enable(duration);
-
+        if (!Ghost.gameObject.activeInHierarchy)
+        {
+            return;
+        }
         targetRenderer.enabled = true;
     }
 
@@ -18,7 +21,7 @@ public abstract class GhostChaseState : GhostBaseState
 
         targetRenderer.enabled = false;
 
-        if(!Ghost.FrightenedState.enabled)
+        if (!Ghost.FrightenedState.enabled)
         {
             Ghost.ScatterState.Enable();
         }
