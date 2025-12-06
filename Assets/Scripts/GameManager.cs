@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     {
         SetLives(initialLives);
         SetScore(0);
+        CountPellets();
         StartCoroutine(ReadyToPlay());
     }
 
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(readyDelay);
         readyText.SetActive(false);
 
-        NewRound();
+        ResetState();
     }
 
     private void SetLives(int lives)
@@ -85,7 +86,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void NewRound()
+    private void CountPellets()
     {
         pelletCount = 0;
         foreach (Transform pellet in pellets)
@@ -93,8 +94,6 @@ public class GameManager : MonoBehaviour
             pelletCount++;
             pellet.gameObject.SetActive(true);
         }
-
-        ResetState();
     }
 
     private void ResetState()
@@ -147,7 +146,7 @@ public class GameManager : MonoBehaviour
         if (pelletCount == 0)
         {
             pacman.gameObject.SetActive(false);
-            Invoke(nameof(NewRound), 3f);
+            Invoke(nameof(ResetState), 3f);
         }
 
         // if the pellet is a PowerPellet
