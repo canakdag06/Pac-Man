@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
         }
 
         pacman.gameObject.SetActive(false);
+        GameEvents.GameOver();
     }
 
     public void GhostEaten(Ghost ghost)
@@ -135,9 +136,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            GameOver();
+            StartCoroutine(GameOverRoutine());
         }
-
     }
 
     private void HandlePelletEaten(Pellet pellet)
@@ -174,6 +174,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(duration);
         ResetMultiplier();
         powerupCoroutine = null;
+    }
+
+    private IEnumerator GameOverRoutine()
+    {
+        yield return new WaitForSeconds(2f);
+        GameOver();
     }
 
     private void ResetMultiplier()

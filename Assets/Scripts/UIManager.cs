@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -7,11 +8,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject[] lives;
     [SerializeField] private FloatingScore scorePopup;
 
+    [SerializeField] private GameObject gameOverPanel;
+
+    private void Start()
+    {
+        gameOverPanel.SetActive(false);
+    }
+
     private void OnEnable()
     {
         GameEvents.OnScoreChanged += UpdateScoreText;
         GameEvents.OnLivesChanged += UpdateLivesUI;
         GameEvents.OnGhostScored += SpawnFloatingText;
+        GameEvents.OnGameOver += ShowGameOverPanel;
     }
 
     private void OnDisable()
@@ -19,6 +28,7 @@ public class UIManager : MonoBehaviour
         GameEvents.OnScoreChanged -= UpdateScoreText;
         GameEvents.OnLivesChanged -= UpdateLivesUI;
         GameEvents.OnGhostScored -= SpawnFloatingText;
+        GameEvents.OnGameOver -= ShowGameOverPanel;
     }
 
     private void UpdateScoreText(int newScore)
@@ -39,5 +49,20 @@ public class UIManager : MonoBehaviour
     {
         FloatingScore scoreInstance = Instantiate(scorePopup, position, Quaternion.identity);
         scoreInstance.Initialize(points, position);
+    }
+
+    private void ShowGameOverPanel()
+    {
+        gameOverPanel.SetActive(true);
+    }
+
+    public void TryAgain()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
