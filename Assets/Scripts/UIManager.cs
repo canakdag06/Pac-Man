@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
         GameEvents.OnLivesChanged += UpdateLivesUI;
         GameEvents.OnGhostScored += SpawnFloatingText;
         GameEvents.OnGameOver += ShowGameOverPanel;
+        GameEvents.OnLevelCompleted += ShowWellDonePanel;
     }
 
     private void OnDisable()
@@ -32,6 +33,7 @@ public class UIManager : MonoBehaviour
         GameEvents.OnLivesChanged -= UpdateLivesUI;
         GameEvents.OnGhostScored -= SpawnFloatingText;
         GameEvents.OnGameOver -= ShowGameOverPanel;
+        GameEvents.OnLevelCompleted -= ShowWellDonePanel;
     }
 
     private void UpdateScoreText(int newScore)

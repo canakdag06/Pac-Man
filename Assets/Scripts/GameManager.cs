@@ -108,13 +108,18 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        DisableCreatures();
+        GameEvents.GameOver();
+    }
+
+    private void DisableCreatures()
+    {
+        pacman.gameObject.SetActive(false);
+
         foreach (Ghost ghost in ghosts)
         {
             ghost.gameObject.SetActive(false);
         }
-
-        pacman.gameObject.SetActive(false);
-        GameEvents.GameOver();
     }
 
     public void GhostEaten(Ghost ghost)
@@ -145,8 +150,10 @@ public class GameManager : MonoBehaviour
         SetScore(Score + pellet.Points);
         if (pelletCount == 0)
         {
-            pacman.gameObject.SetActive(false);
-            Invoke(nameof(ResetState), 3f);
+            GameEvents.LevelCompleted();
+            DisableCreatures();
+            return;
+            //Invoke(nameof(ResetState), 3f);
         }
 
         // if the pellet is a PowerPellet
