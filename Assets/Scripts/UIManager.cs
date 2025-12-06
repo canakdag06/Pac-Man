@@ -9,10 +9,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private FloatingScore scorePopup;
 
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject wellDonePanel;
+    [SerializeField] private TextMeshProUGUI finalScore;
 
     private void Start()
     {
         gameOverPanel.SetActive(false);
+        wellDonePanel.SetActive(false);
     }
 
     private void OnEnable()
@@ -54,6 +57,12 @@ public class UIManager : MonoBehaviour
     private void ShowGameOverPanel()
     {
         gameOverPanel.SetActive(true);
+    }
+
+    private void ShowWellDonePanel()
+    {
+        wellDonePanel.SetActive(true);
+        finalScore.text = GameManager.Instance.Score.ToString();
     }
 
     public void TryAgain()
